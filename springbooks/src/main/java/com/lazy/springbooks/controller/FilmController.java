@@ -18,9 +18,9 @@ import java.util.List;
 public class FilmController {
     private static List<Film> films =new ArrayList<Film>();
     static {
-        films.add(new Film(1,"Fight club","David Fincher"));
-        films.add(new Film(2,"Dumkirk","Cristopher Nolan"));
-        films.add(new Film(3,"The Breakfast club","John Hughes"));
+        films.add(new Film(0,"Fight club","David Fincher"));
+        films.add(new Film(1,"Dumkirk","Cristopher Nolan"));
+        films.add(new Film(2,"The Breakfast club","John Hughes"));
     }
 
     @Value("${welcome.message}")
