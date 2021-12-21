@@ -1,13 +1,5 @@
 body{
-    background-color: #524d77;
-}
-.background{
-    width: 430px;
-    height: 520px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 50%;
+    background-color: #054543;
 }
 input{
     display: block;
@@ -29,49 +21,22 @@ button{
     font-size: 13px;
     -webkit-transform: translate(0);
     transform: translate(0);
-    background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+    background-color: #f5cac3;
     padding: 0.7em 2em;
-    margin-bottom: 4px;
-    margin-top: 4px;
+    margin-bottom: 6px;
+    margin-top: 6px;
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 1px;
     border-radius: 10px;
-    box-shadow: 1px 1px 10px rgba(84, 84, 84, 0.44);
+    box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
     -webkit-transition: box-shadow 0.25s;
     transition: box-shadow 0.25s;
     color: white;
 }
-
-
-
-.background .shape{
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
-}
-.shape:first-child{
-    background: linear-gradient(
-            #a818ad,
-            #f623c8
-    );
-    left: -80px;
-    top: -80px;
-}
-.shape:last-child{
-    background: linear-gradient(
-            to right,
-            #2f9aff,
-            #19c5f0
-    );
-    right: -90px;
-    bottom: -20px;
-}
-
 .container
 {
-    background-color: rgba(174, 125, 189, 0.13);
+    background-color: #84a59d;
     margin-top: 30px;
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     margin-left: auto;
@@ -85,4 +50,15 @@ button{
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(10px);
+}
+.table{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: white;
+    border: 1px solid;
+    border-collapse: collapse;
+    backdrop-filter: blur(10px);
+    font-family: "RalewayRegular";
+    box-shadow: 0 0 40px white;
 }

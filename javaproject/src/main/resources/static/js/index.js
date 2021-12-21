@@ -28,7 +28,7 @@ async function userSearch() {
 
     let search = document.querySelector('.search');
     let searchButton = button(await genUserSearchButton, 'Search');
-    let searchPatientCard = input('text','searchPatientCard','computer name');
+    let searchPatientCard = input('text','searchPatientCard','book name');
     searchButton.id = 'docCreateButton';
     search.appendChild(searchPatientCard);
     search.appendChild(searchButton);

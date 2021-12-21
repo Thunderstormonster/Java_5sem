@@ -122,7 +122,7 @@ async function genUserInfo() {
             let th2 = document.createElement('th');
             th2.innerHTML = 'Surname';
             let th3 = document.createElement('th');
-            th3.innerHTML = 'Product name';
+            th3.innerHTML = 'Book name';
             let th4 = document.createElement('th');
             th4.innerHTML = 'Expiration date';
             let th5 = document.createElement('th');
