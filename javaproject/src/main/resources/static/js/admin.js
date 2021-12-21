@@ -201,7 +201,7 @@ async function genAdminInfo() {
             let th2 = document.createElement('th');
             th2.innerHTML = 'user surname';
             let th3 = document.createElement('th');
-            th3.innerHTML = 'scooter name';
+            th3.innerHTML = 'Book name';
             let th4 = document.createElement('th');
             th4.innerHTML = 'expiration date';
             let th5 = document.createElement('th');
