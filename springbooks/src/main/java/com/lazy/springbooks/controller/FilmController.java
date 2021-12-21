@@ -12,6 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* Аннотация @RequestMapping используется для связывания с URL для всего класса
+* */
+
 @Slf4j
 @Controller
 @RequestMapping
@@ -29,6 +33,7 @@ public class FilmController {
     @Value("${error.message}")
     private String errorMessage;
 
+    //Обрабатывает get-запросы
     @GetMapping(value = {"/","/index"})
     public ModelAndView index(Model model){
         ModelAndView modelAndView = new ModelAndView();
@@ -58,6 +63,7 @@ public class FilmController {
 
     @PostMapping(value = {"/addfilm"})
     public ModelAndView saveFilm(Model model, @ModelAttribute("filmform") FilmForm filmForm) {
+        //заполнитель для хранения информации
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("filmlist");
         int id = films.size();
@@ -116,6 +122,7 @@ public class FilmController {
         return modelAndView;
     }
 
+    //предоставление методов из модели
     @PostMapping(value = {"/deletefilm"})
     public ModelAndView deletePerson(Model model, @ModelAttribute("filmform") FilmForm filmForm) {
         ModelAndView modelAndView = new ModelAndView();

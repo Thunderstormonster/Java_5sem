@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 body,input,button{
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.42em;
-    color: #A7A1AE;
-    background-color:#1F2739;
+    font-family: Inter,sans-serif;
+    font-weight: 500;
+    line-height: 1.5em;
+    color: #f8faef;
+    background-color:#3f334d;
 }
 
 h1 {
@@ -14,7 +14,7 @@ h1 {
     font-weight: 300;
     line-height: 1em;
     text-align: center;
-    color:#4DC3FA;
+    color:#f8faef;
 }
 
 h2{
@@ -24,11 +24,15 @@ h2{
     text-align: center;
     display: block;
     padding-bottom: 2em;
-    color:#FB667A;
+    color:#7d8491;
+    position: absolute;
+    top: 200px;
+    left: 0;
+    width: 100%;
 }
 h2 a{
     font-weight: 700;
     text-transform: uppercase;
-    color:#FB667A;
+    color:#7d8491;
     text-decoration: none;
 }
