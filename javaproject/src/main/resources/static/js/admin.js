@@ -32,7 +32,7 @@ async function genListOfCompStuffForAdmin() {
     let token = localStorage.getItem('token');
     let someList = document.querySelector('.someList');
     someList.innerHTML = '';
-    let listProject = await getAllCompsForAdmin(token);
+    let listProject = await getAllScootersForAdmin(token);
 
     for (let i = 0; i < listProject.length; i++) {
         let genDiv = div();
@@ -129,7 +129,28 @@ function validateScooter() {
     if (!(descriptionL >= 4)) {
         return false;
     }
-    if (cost === null) {
+    if (cost === null && cost <0) {
+        return false;
+    }
+    if (expirationDate === null) {
+        return false;
+    }
+    return true;
+
+}
+function validateBook() {
+    let nameL = document.getElementById('name').value.length;
+    let descriptionL = document.getElementById('description').value.length;
+    let cost = document.getElementById('cost').value;
+    let expirationDate = document.getElementById('date').value;
+
+    if (!(nameL >= 2 && nameL <= 16)) {
+        return false;
+    }
+    if (!(descriptionL >= 4)) {
+        return false;
+    }
+    if (cost < 0 && cost==0) {
         return false;
     }
     if (expirationDate === null) {
@@ -201,7 +222,7 @@ async function genAdminInfo() {
             let th2 = document.createElement('th');
             th2.innerHTML = 'user surname';
             let th3 = document.createElement('th');
-            th3.innerHTML = 'Book name';
+            th3.innerHTML = 'scooter name';
             let th4 = document.createElement('th');
             th4.innerHTML = 'expiration date';
             let th5 = document.createElement('th');
@@ -264,8 +285,3 @@ async function rent(userProductsListElement, token) {
     }, token);
     await genAdminInfo();
 }
-
-
-
-
-

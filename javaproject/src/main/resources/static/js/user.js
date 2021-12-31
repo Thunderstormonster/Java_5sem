@@ -6,7 +6,7 @@ async function genCard() {
 
     let name = input('text', 'name', 'Name', '');
 
-    let surname = input('text', 'surname', 'Surname', 'surnameValue');
+    let surname = input('text', 'surname', 'Surname', '');
 
 
     info.appendChild(name);
@@ -68,7 +68,7 @@ async function genCardCreate(user, comp) {
     createButton.id = 'patientCreateButton';
     create.appendChild(createButton);
 }
-async function getCertainCompUser(listProjectElement) {
+async function getCertainBookUser(listProjectElement) {
     let token = localStorage.getItem('token');
 
     let userData = await getUserByToken(token);
@@ -81,11 +81,11 @@ async function getCertainCompUser(listProjectElement) {
     await genCardCreate(user,comp);
 }
 
-async function genListOfCompStuffForUser() {
+async function genListOfBookStuffForUser() {
     let token = localStorage.getItem('token');
     let someList = document.querySelector('.someList');
     someList.innerHTML = '';
-    let listProject = await getAllCompsForUser(token);
+    let listProject = await getAllScootersForUser(token);
 
     for (let i = 0; i < listProject.length; i++) {
         let genDiv = div();
@@ -93,7 +93,7 @@ async function genListOfCompStuffForUser() {
         let genBut = buttonWithParams('get');
 
         genBut.onclick = async () => {
-            await getCertainCompUser(listProject[i]);
+            await getCertainBookUser(listProject[i]);
         };
         genDiv.appendChild(genP1);
         genDiv.appendChild(genBut);
@@ -122,7 +122,7 @@ async function genUserInfo() {
             let th2 = document.createElement('th');
             th2.innerHTML = 'Surname';
             let th3 = document.createElement('th');
-            th3.innerHTML = 'Book name';
+            th3.innerHTML = 'Product name';
             let th4 = document.createElement('th');
             th4.innerHTML = 'Expiration date';
             let th5 = document.createElement('th');

@@ -10,6 +10,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    //автоматическое внедрение зависимостей
     @Autowired
     private JwtFilter jwtFilter;
 

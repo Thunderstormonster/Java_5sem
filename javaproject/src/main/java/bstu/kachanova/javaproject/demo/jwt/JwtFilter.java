@@ -18,12 +18,16 @@ import java.io.IOException;
 
 import static org.springframework.util.StringUtils.hasText;
 
+//аутентификация запросов
+//безопасное предоставление заявок между двумя сторонами
 @Component
+//отмечен для управления Spring
 @Log
 public class JwtFilter extends GenericFilterBean {
 
     public static final String AUTHORIZATION = "Authorization";
 
+    //обозначитт место для инъекции
     @Autowired
     private JwtProvider jwtProvider;
 
@@ -41,14 +45,17 @@ public class JwtFilter extends GenericFilterBean {
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(auth);
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
+    //Bearer не требует от предъявителя доказательство воладения
     private String getTokenFromRequest(HttpServletRequest request) {
         String bearer = request.getHeader(AUTHORIZATION);
         if (hasText(bearer) && bearer.startsWith("Bearer ")) {
             return bearer.substring(7);
         }
+
         return null;
     }
 }

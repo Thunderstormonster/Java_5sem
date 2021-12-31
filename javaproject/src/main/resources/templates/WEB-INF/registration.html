@@ -3,17 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
     <title>Title</title>
     <script th:src="@{../js/reg.js}"></script>
 </head>
 <body>
-<h3>Reg</h3>
-
+<h3>Registration for User</h3>
 <input type="text" id="login" placeholder="login"><br>
 <input type="password" id="password" placeholder="password"><br>
 <input type="email" id="email" placeholder="email">
 <button onclick="reg()" th:method="post">Submit</button><br>
-<a href="/">home</a><br>
+<a href="/">return home</a><br>
 <div id="message"></div>
 </body>
 </html>

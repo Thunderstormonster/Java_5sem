@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @Getter
-public class ScooterRequestNoRent {
+public class BookRequestNoRent {
     private long id;
     private String name;
     private String description;

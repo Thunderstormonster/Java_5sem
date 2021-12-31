@@ -34,20 +34,6 @@ async function getAllUserRentByUserId(id, token) {
         return data;
     });
 }
-async function getAllUserRentByRent(data, token) {
-    return await fetch(`/doctor/getAllByRent/${data}`,{
-        method :'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'content-type': 'application/json'
-        },
-
-    }).then(function (res) {
-        return res.json();
-    }).then(function (data) {
-        return data;
-    });
-}
 
 async function isUserRentExistByScooterId(data, token) {
     return await fetch("/admin/isUserRentExistByScooterId",{

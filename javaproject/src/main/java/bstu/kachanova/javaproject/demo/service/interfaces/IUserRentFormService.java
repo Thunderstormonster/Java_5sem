@@ -14,13 +14,13 @@ public interface IUserRentFormService {
     void deleteByUserIdAndScooterId(Long user_id, Long computerStuff_id) throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
 
     RentForm create(RentForm userRentForm)throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
-    boolean existsByScooterId(Long computerStuff_id) throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
+    boolean existsByBookId(Long computerStuff_id) throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
     RentForm getById(Long id)throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
 
     List<RentForm> getAllByUserId(Long user_id)throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
     List<RentForm> getAllByRent(boolean rent)throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
 
-    List<RentForm> getAllByScooterExpirationDateLessThan(Date computerStuff_expirationDate)throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
+    List<RentForm> getAllByBookExpirationDateLessThan(Date computerStuff_expirationDate)throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
     @Transactional
     void setUserRentFormById(Long id, boolean rent)throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
 }

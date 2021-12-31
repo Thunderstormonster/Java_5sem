@@ -10,7 +10,7 @@ import bstu.kachanova.javaproject.demo.exception.ServiceException;
 import bstu.kachanova.javaproject.demo.models.RentForm;
 import bstu.kachanova.javaproject.demo.repository.UserRentFormRepository;
 import bstu.kachanova.javaproject.demo.service.UserRentFormService;
-import bstu.kachanova.javaproject.demo.service.ScooterService;
+import bstu.kachanova.javaproject.demo.service.BookService;
 import bstu.kachanova.javaproject.demo.validator.RentValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,14 +26,14 @@ public class UserRentRestController {
     @Autowired
     private UserRentFormRepository rentFormRepository;
     @Autowired
-    private ScooterService ScooterService;
+    private BookService BookService;
     @Autowired
     private RentValidator rentValidator;
 
     @PostMapping("/admin/getAllByScooterExpirationDateLessThan")
-    public ResponseEntity<?> getAllByComputerStuffExpirationDateLessThan(@RequestBody DateRequest dateRequest) throws ControllerException {
+    public ResponseEntity<?> getAllByScooterExpirationDateLessThan(@RequestBody DateRequest dateRequest) throws ControllerException {
         try {
-            return new ResponseEntity<>(userRentFormService.getAllByScooterExpirationDateLessThan(dateRequest.getDate()), HttpStatus.FOUND);
+            return new ResponseEntity<>(userRentFormService.getAllByBookExpirationDateLessThan(dateRequest.getDate()), HttpStatus.FOUND);
         } catch (ServiceException e) {
             throw new ControllerException(e);
         }
@@ -75,7 +75,7 @@ public class UserRentRestController {
     @PostMapping("/admin/isUserRentExistByScooterId")
     public ResponseEntity<?> isUserRentExistByScooterId(@RequestBody IdRequest idRequest) throws ControllerException{
         try {
-            if(userRentFormService.existsByScooterId(idRequest.getId())) {
+            if(userRentFormService.existsByBookId(idRequest.getId())) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

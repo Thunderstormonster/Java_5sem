@@ -20,18 +20,21 @@
 <script src="../static/js/index.js" th:src="@{../js/index.js}"></script>
 <script src="../static/js/elems.js" th:src="@{../js/elems.js}"></script>
 <script src="../static/js/api/user_rent_api.js" th:src="@{../js/api/user_rent_api.js}"></script>
-<script src="../static/js/api/scooter_api.js" th:src="@{../js/api/scooter_api.js}"></script>
+<script src="../static/js/api/book_api.js" th:src="@{../js/api/book_api.js}"></script>
 <script src="../static/js/api/user.js" th:src="@{../js/api/user.js}"></script>
 <script src="../static/js/admin.js" th:src="@{../js/admin.js}"></script>
 <script src="../static/js/general.js" th:src="@{../js/general.js}"></script>
 <script src="../static/js/user.js" th:src="@{../js/user.js}"></script>
 
-<h3>Auth</h3>
+<h3>Authorization</h3>
 <input type="text" id="login" placeholder="login"><br>
 <input type="password" id="password" placeholder="password">
 
 <button onclick="login()">Submit</button><br>
-<a href="/">home</a><br>
+<a href="/">return home</a><br>
 <div id="message"></div>
+<div th:if="${message}">
+    <h1 th:utext="${message}" style="font-size: medium"/>
+</div>
 </body>
 </html>

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class ScooterRequestNoIdRent {
+public class BookRequestNoIdRent {
     private String name;
     private String description;
     private int cost;

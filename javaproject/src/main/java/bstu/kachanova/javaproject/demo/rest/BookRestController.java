@@ -1,45 +1,54 @@
 package bstu.kachanova.javaproject.demo.rest;
 
 import bstu.kachanova.javaproject.demo.dto.NameRequest;
-import bstu.kachanova.javaproject.demo.dto.ScooterRequestNoIdRent;
-import bstu.kachanova.javaproject.demo.dto.ScooterRequestNoRent;
+import org.springframework.validation.BindingResult;
+import bstu.kachanova.javaproject.demo.dto.BookRequestNoIdRent;
+import bstu.kachanova.javaproject.demo.dto.BookRequestNoRent;
 import bstu.kachanova.javaproject.demo.exception.ControllerException;
 import bstu.kachanova.javaproject.demo.exception.RepositoryException;
 import bstu.kachanova.javaproject.demo.exception.ServiceException;
+import bstu.kachanova.javaproject.demo.models.RentForm;
 import bstu.kachanova.javaproject.demo.models.Scooter;
 import bstu.kachanova.javaproject.demo.repository.UserRentFormRepository;
-import bstu.kachanova.javaproject.demo.service.ScooterService;
+import bstu.kachanova.javaproject.demo.service.BookService;
+import bstu.kachanova.javaproject.demo.validator.RentValidator;
 import bstu.kachanova.javaproject.demo.service.UserRentFormService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @RestController
-public class ScooterRestController {
+public class BookRestController {
     @Autowired
-    private ScooterService scooterService;
+    private RentValidator rentValidator;
+    @Autowired
+    private BookService bookService;
     @Autowired
     private UserRentFormService userRentFormService;
     @Autowired
     private UserRentFormRepository userRentFormRepository;
 
-    private static final Logger logger = Logger.getLogger(ScooterRestController.class);
+    private static final Logger logger = Logger.getLogger(BookRestController.class);
 
     @PostMapping("/admin/createScooter")
-    public ResponseEntity<?> createScooter(@RequestBody ScooterRequestNoIdRent scooterRequestNoIdRent) throws ControllerException {
+    public ResponseEntity<?> createScooter(@RequestBody @Validated BookRequestNoIdRent bookRequestNoIdRent, BindingResult bindingResult) throws ControllerException {
         Scooter stuff = new Scooter(
-                scooterRequestNoIdRent.getName(),
-                scooterRequestNoIdRent.getDescription(),
-                scooterRequestNoIdRent.getCost(),
-                scooterRequestNoIdRent.getExpirationDate()
+                bookRequestNoIdRent.getName(),
+                bookRequestNoIdRent.getDescription(),
+                bookRequestNoIdRent.getCost(),
+                bookRequestNoIdRent.getExpirationDate()
         );
         try {
-            scooterService.create(stuff);
+            Scooter test=new Scooter();
+            test.setCost(15);
+            rentValidator.validate2(test,bindingResult);
+            bookService.create(stuff);
             return new ResponseEntity<>(stuff, HttpStatus.OK);
         } catch (ServiceException e) {
             throw new ControllerException(e);
@@ -48,22 +57,22 @@ public class ScooterRestController {
     @DeleteMapping("/admin/deleteScooterByNameA")
     public ResponseEntity<?> deleteScooterByNameA(@RequestBody NameRequest nameRequest) throws ControllerException {
         try {
-            Scooter man = scooterService.getByName(nameRequest.getName());
-            scooterService.deleteByName(nameRequest.getName());
+            Scooter man = bookService.getByName(nameRequest.getName());
+            bookService.deleteByName(nameRequest.getName());
             return new ResponseEntity<>(man, HttpStatus.OK);
         } catch (ServiceException e) {
             throw new ControllerException(e);
         }
     }
     @PutMapping("/admin/updateScooter")
-    public ResponseEntity<?> updateScooter(@RequestBody ScooterRequestNoRent ScooterRequestNoRent)throws ControllerException {
+    public ResponseEntity<?> updateScooter(@RequestBody BookRequestNoRent BookRequestNoRent)throws ControllerException {
         try {
-            Scooter man = scooterService.getById( ScooterRequestNoRent.getId());
-            scooterService.updateScooterById(
-                    ScooterRequestNoRent.getId(),
-                    ScooterRequestNoRent.getName(),
-                    ScooterRequestNoRent.getDescription(),
-                    ScooterRequestNoRent.getCost()
+            Scooter man = bookService.getById( BookRequestNoRent.getId());
+            bookService.updateBookById(
+                    BookRequestNoRent.getId(),
+                    BookRequestNoRent.getName(),
+                    BookRequestNoRent.getDescription(),
+                    BookRequestNoRent.getCost()
             );
             return new ResponseEntity<>(man, HttpStatus.OK);
         } catch (ServiceException e) {
@@ -75,7 +84,7 @@ public class ScooterRestController {
     public ResponseEntity<?> deleteScooterByNameU(@RequestBody NameRequest nameRequest)throws ControllerException {
 
         try {
-            Scooter man = scooterService.getByName(nameRequest.getName());
+            Scooter man = bookService.getByName(nameRequest.getName());
             userRentFormRepository.deleteByUserName(nameRequest.getName());
             return new ResponseEntity<>(man, HttpStatus.OK);
         } catch (ServiceException | RepositoryException e ) {
@@ -85,10 +94,10 @@ public class ScooterRestController {
 
 
     }
-    @GetMapping("/admin/getAllCompsForAdmin")
-    public ResponseEntity<?> getAllCompsForAdmin() throws ControllerException{
+    @GetMapping("/admin/getAllScootersForAdmin")
+    public ResponseEntity<?> getAllScootersForAdmin() throws ControllerException{
         try {
-            return new ResponseEntity<>(scooterService.getAll(),HttpStatus.OK);
+            return new ResponseEntity<>(bookService.getAll(),HttpStatus.OK);
         } catch (ServiceException e) {
 
             throw new ControllerException(e);
@@ -98,7 +107,7 @@ public class ScooterRestController {
     @PostMapping("/admin/isScooterExistByName")
     public ResponseEntity<?> isScooterExistByName(@RequestBody NameRequest nameRequest) throws ControllerException{
         try {
-            if(!scooterService.existsByName(nameRequest.getName())){
+            if(!bookService.existsByName(nameRequest.getName())){
                 return new ResponseEntity<>(HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.FOUND);
@@ -113,7 +122,7 @@ public class ScooterRestController {
     public ResponseEntity<?> userGetScooterByName(@PathVariable(name = "name")String name)throws ControllerException {
         Scooter stuff = null;
         try {
-            stuff = scooterService.getByName(name);
+            stuff = bookService.getByName(name);
             return new ResponseEntity<>(stuff,HttpStatus.OK);
         } catch (ServiceException e) {
             throw new ControllerException(e);
@@ -123,7 +132,7 @@ public class ScooterRestController {
     public ResponseEntity<?> adminGetScooterByName(@PathVariable(name = "name")String name) throws ParseException, ControllerException {
         Scooter stuff = null;
         try {
-            stuff = scooterService.getByName(name);
+            stuff = bookService.getByName(name);
             String pattern = "yyyy-MM-dd";
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
@@ -138,10 +147,10 @@ public class ScooterRestController {
         }
 
     }
-    @GetMapping("/user/getAllCompsForUser")
-    public ResponseEntity<?> getAllCompsForUser()throws ControllerException {
+    @GetMapping("/user/getAllScootersForUser")
+    public ResponseEntity<?> getAllScootersForUser()throws ControllerException {
         try {
-            return new ResponseEntity<>(scooterService.getAll(),HttpStatus.OK);
+            return new ResponseEntity<>(bookService.getAll(),HttpStatus.OK);
         } catch (ServiceException e) {
             throw new ControllerException(e);
 

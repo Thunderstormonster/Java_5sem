@@ -10,8 +10,13 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
+//Эти классы состоят в основном из @Bean аннотированных методов, которые определяют создание экземпляров,
+//конфигурацию и логику инициализации для объектов, которые будут управляться контейнером Spring IoC
+
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+    //описание доступных бинов
+    //зарегистрирует возвращаемое значение как bean-компонент
     @Bean
     public ClassLoaderTemplateResolver templateResolver(){
         var templateResolver = new ClassLoaderTemplateResolver();

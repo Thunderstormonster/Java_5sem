@@ -20,7 +20,7 @@
 <script src="../static/js/index.js" th:src="@{../js/index.js}"></script>
 <script src="../static/js/elems.js" th:src="@{../js/elems.js}"></script>
 <script src="../static/js/api/user_rent_api.js" th:src="@{../js/api/user_rent_api.js}"></script>
-<script src="../static/js/api/scooter_api.js" th:src="@{../js/api/scooter_api.js}"></script>
+<script src="../static/js/api/book_api.js" th:src="@{../js/api/book_api.js}"></script>
 <script src="../static/js/api/user.js" th:src="@{../js/api/user.js}"></script>
 <script src="../static/js/admin.js" th:src="@{../js/admin.js}"></script>
 <script src="../static/js/general.js" th:src="@{../js/general.js}"></script>
@@ -32,12 +32,15 @@
 <div class="background">
     <div class="container">
         <h3>Electronic LIBRARY form</h3>
+        <img src="../static/img/peach.jpg" th:src="@{../img/peach.jpg}">
+        <img src="../static/img/dog.jpg" th:src="@{../img/dog.jpg}">
         <div class="row">
 
             <div class="col-sm">
                 <div class="results">
 
                 </div>
+                <div class="nextPrev"></div>
                 <div class="logOut">
 
                 </div>
@@ -45,7 +48,6 @@
 
                 </div>
             </div>
-            <div class="nextPrev"></div>
             <div class="col-sm">
                 <input type="hidden">
                 <div class="personalInfo">

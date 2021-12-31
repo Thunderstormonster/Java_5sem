@@ -2,11 +2,11 @@ async function genUserSearchButton() {
     let token = localStorage.getItem('token');
     let inputResult = document.getElementById('searchPatientCard').value;
     if(inputResult.length===0){
-        await genListOfCompStuffForUser();
+        await genListOfBookStuffForUser();
     }else{
         let someList = document.querySelector('.someList');
         someList.innerHTML = '';
-        let listProject = await getAllCompsForUser(token);
+        let listProject = await getAllScootersForUser(token);
 
         for (let i = 0; i < listProject.length; i++) {
             let genDiv = div();
@@ -15,7 +15,7 @@ async function genUserSearchButton() {
                 let genBut = buttonWithParams('get');
 
                 genBut.onclick = async () => {
-                    await getCertainCompUser(listProject[i]);
+                    await getCertainBookUser(listProject[i]);
                 };
                 genDiv.appendChild(genP1);
                 genDiv.appendChild(genBut);
@@ -36,14 +36,17 @@ async function userSearch() {
 async function load() {
 
     let result = document.querySelector('.results');
-    await generateListOfUsers(result);
-    genPrev();
-    await genNext();
+    //await generateListOfUsers(result);
+    //genPrev();
+    //await genNext();
 
 
     if (await isAuth()) {
         genLogout();
         if (await isAdmin()) {
+            await generateListOfUsers(result);
+            genPrev();
+            await genNext();
             await genCompStuff();
             await genAdminCreate();
             await genAdminUpdate();
@@ -53,7 +56,7 @@ async function load() {
 
 
         } else {
-            await genListOfCompStuffForUser();
+            await genListOfBookStuffForUser();
             await userSearch();
             await genUserInfo();
         }

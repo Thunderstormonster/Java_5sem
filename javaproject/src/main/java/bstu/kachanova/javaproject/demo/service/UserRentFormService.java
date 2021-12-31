@@ -36,7 +36,7 @@ public class UserRentFormService implements IUserRentFormService {
     }
 
     @Override
-    public boolean existsByScooterId(Long computerStuff_id) throws ServiceException {
+    public boolean existsByBookId(Long computerStuff_id) throws ServiceException {
         try {
             return userRentFormRepository.existsByScooterId(computerStuff_id);
         } catch (RepositoryException e) {
@@ -71,7 +71,7 @@ public class UserRentFormService implements IUserRentFormService {
     }
 
     @Override
-    public List<RentForm> getAllByScooterExpirationDateLessThan(Date computerStuff_expirationDate) throws ServiceException{
+    public List<RentForm> getAllByBookExpirationDateLessThan(Date computerStuff_expirationDate) throws ServiceException{
         try {
             return userRentFormRepository.getAllByScooterExpirationDateLessThan(computerStuff_expirationDate);
         } catch (RepositoryException e) {

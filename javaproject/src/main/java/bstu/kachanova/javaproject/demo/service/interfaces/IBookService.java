@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public interface IScooterService {
+public interface IBookService {
     @Transactional
     void deleteById(Long id) throws ServiceException;
 
@@ -25,7 +25,7 @@ public interface IScooterService {
     Scooter getByName(String name)throws ServiceException, bstu.kachanova.javaproject.demo.exception.ServiceException;
 
     @Transactional
-    void updateScooterById(
+    void updateBookById(
             Long id,
             String name,
             String description,

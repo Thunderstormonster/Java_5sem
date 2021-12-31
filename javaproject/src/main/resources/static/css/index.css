@@ -4,11 +4,11 @@ body{
 input{
     display: block;
     height: 50px;
-    width: 100%;
+    width: 300px;
     background-color: rgba(255,255,255,0.07);
     border-radius: 3px;
     padding: 0 10px;
-    margin-top: 8px;
+    margin:0 auto;
     font-size: 14px;
     font-weight: 300;
     color: white;
@@ -17,21 +17,12 @@ button{
     border: 5em;
     cursor: pointer;
     outline: none;
-    font-family: 'Poppins',sans-serif;
     font-size: 13px;
-    -webkit-transform: translate(0);
-    transform: translate(0);
     background-color: #f5cac3;
     padding: 0.7em 2em;
-    margin-bottom: 6px;
-    margin-top: 6px;
-    margin-left: 10px;
-    margin-right: 10px;
+    text-align: center;
     border-radius: 1px;
     border-radius: 10px;
-    box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
-    -webkit-transition: box-shadow 0.25s;
-    transition: box-shadow 0.25s;
     color: white;
 }
 .container
@@ -61,4 +52,14 @@ button{
     backdrop-filter: blur(10px);
     font-family: "RalewayRegular";
     box-shadow: 0 0 40px white;
+}
+img{
+    width: 100px;
+    height: 90px;
+}
+h3,lable{
+    text-align: center;
+}
+a{
+    color:white;
 }

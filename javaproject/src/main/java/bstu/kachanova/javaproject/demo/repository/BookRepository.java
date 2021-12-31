@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ScooterRepository extends JpaRepository<Scooter, Long> {
+public interface BookRepository extends JpaRepository<Scooter, Long> {
     @Modifying
     void deleteById(int id)throws RepositoryException;
 
@@ -22,9 +22,10 @@ public interface ScooterRepository extends JpaRepository<Scooter, Long> {
 
     boolean existsByName(String name)throws RepositoryException;
 
+    //изменла имя
     @Modifying
     @Query("update Scooter c set c.name=:name, c.description=:description, c.cost=:cost where c.id=:id")
-    void updateScooterById(
+    void updateBookById(
             @Param("id") Long id,
             @Param("name") String name,
             @Param("description") String description,
